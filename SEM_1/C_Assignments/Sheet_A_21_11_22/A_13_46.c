@@ -17,22 +17,31 @@ int main()
     printf("\nEnter p: ");
     scanf("%d", &p);
 
+    //this is the matrix which will be randomly filled with data
     matrix = (float** )malloc(sizeof(float* ) * n);
     for(i=0;i<n;i++)
         matrix[i] = (float* )malloc(sizeof(float ) * n);
+    
+    //this mPowerP holds the result of m^p operation
     mPowerP = (float** )malloc(sizeof(float* ) * n);
     for(i=0;i<n;i++)
         mPowerP[i] = (float* )malloc(sizeof(float ) * n);
-    for(i=0;i<n;i++)
+    for(i=0;i<n;i++)    //initializing it to 0
         for(j=0;j<n;j++)
             *(*(mPowerP + i) + j) = 0.f;
 
-    r = (float** )malloc(sizeof(float* ) * 3);
+    //r is the n-dimensional column vector. r is (1 X n)
+    r = (float** )malloc(sizeof(float* ) * n);
     for(i=0;i<n;i++)
         r[i] = (float* )malloc(sizeof(float ) * 1);
-    final = (float** )malloc(sizeof(float* ) * 3);
+    
+    //final is the matrix which stores the ultimate result
+    //which is - r * (m^p)
+    final = (float** )malloc(sizeof(float* ) * n);
     for(i=0;i<n;i++)
         final[i] = (float* )malloc(sizeof(float ) * 1);
+    
+    //initializing r and final. Each element of r is 1/n
     for(i=0;i<n;i++) {
         for(j=0;j<1;j++){
             *(*(r + i) + j) = (float)1/n;

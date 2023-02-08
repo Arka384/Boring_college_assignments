@@ -48,8 +48,8 @@ int main()
     std::cout<<"\nComplex number c: ";
     c->show();
 
-    // Complex x = a->sum(*b);
-    *b = *a + *c;
+    Complex x = a->sum(*b);
+    //*b = *a + *c;
     std::cout<<"\na + c = ";
-    b->show();
+    x.show();
 }

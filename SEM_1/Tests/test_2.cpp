@@ -1,34 +1,38 @@
 #include <iostream>
 
-class a {
+class shape {
 public:
-    int i = 1;
-    // a() { std::cout<<"\n A"; }
-    void print() { std::cout<<"from A : " <<"\n"; }
+    virtual void print() { std::cout<<"Shape"; }
 };
 
-class b : public a {
+class circle : public shape{
 public:
-    b () { 
-        i = 2;
-        // std::cout<<"\n B";
-    }
-    void print() { std::cout<<"\nfuck"; }
-    void print(int x) { std::cout<<"from B : "<< x <<"\n"; }
+    void print() { std::cout<<"Circle"; }   
 };
 
+class square : public shape{
+public:
+    void print() { std::cout<<"Square"; }   
+};
 
+class ellipse : public shape{
+public:
+    void print() { std::cout<<"Ellipse"; }   
+};
+
+void invoke_Print(shape* shapeObj) {
+    shapeObj->print();
+}
 
 int main() 
 {
-    a *p;
-    a a1;
-    b b1;
+    circle c;
+    square s;
+    ellipse e;
+    shape *sp;
+    sp = &e;
 
-    p = &a1;
-    p->print();
+    sp->print();
 
-    p = &b1;
-    p->print();
-
+    invoke_Print(sp);
 }

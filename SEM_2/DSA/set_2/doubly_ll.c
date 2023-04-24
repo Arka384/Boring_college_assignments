@@ -24,22 +24,96 @@ node* delBeforeK(node* , int );
 node* delKNode(node* , int );
 node* delValue(node* , int );
 
+node* reverse(node* );
+
+void getInput(int* , int* , int* , int , int , int );
+
 int main()
 {
     node* head = NULL;
-    head = create(head);
+    int s, val, t_val, k;
+	head = create(head);
 
-	head = delValue(head, 10);
+	/*
+		2 -> display, 3 -> ins front, 4 -> ins end
+		5 -> ins after k'th, 6 -> ins after node,
+		7 -> ins before k'th, 8 -> ins before node,
 
-	head = insend(head, 20);
-	//head = delKNode(head, 2);
-	head = insend(head, 30);
-	head = insend(head, 40);
-	display(head);
-	head = delValue(head, 40);
-    
-	display(head);
+		9 -> del first, 10 -> del last
+		11 -> del after k'th, 12 -> del before k'th
+		13 -> del k'th, 14 -> del value
 
+		15 -> reverse
+	*/
+
+	while(1)
+	{
+		// printf("2 -> display \n3 -> ins front \n4 -> ins end ");
+		// printf("\n5 -> ins after k'th \n6 -> ins after node");
+		// printf("\n7 -> ins before k'th \n8 -> ins before node");
+		// printf("\n9 -> del first \n10 -> del last");
+		// printf("\n11 -> del after k'th \n12 -> del before k'th");
+		// printf("\n13 -> del k'th \n14 -> del value \n15 -> reverse");
+		printf("\nEnter choice: ");
+		scanf("%d",&s);
+		switch(s)
+		{
+			case 2:
+				display(head);
+				break;
+			case 3:
+				getInput(&val, &k, &t_val, 1, 0, 0);
+				head = insbeg(head, val);
+				break;
+			case 4:
+				getInput(&val, &k, &t_val, 1, 0, 0);
+				head = insend(head, val);
+				break;
+			case 5:
+				getInput(&val, &k, &t_val, 1, 1, 0);
+				head = insAfterK(head, k, val);
+				break;
+			case 6:
+				getInput(&val, &k, &t_val, 1, 0, 1);
+				head = insAfterNode(head, t_val, val);
+				break;
+			case 7:
+				getInput(&val, &k, &t_val, 1, 1, 0);
+				head = insBeforeK(head, k, val);
+				break;
+			case 8:
+				getInput(&val, &k, &t_val, 1, 0, 1);
+				head = insBeforeNode(head, t_val, val);
+				break;
+			case 9:
+				head = delbeg(head);
+				break;
+			case 10:
+				head = delend(head);
+				break;
+			case 11:
+				getInput(&val, &k, &t_val, 0, 1, 0);
+				head = delAfterK(head, k);
+				break;
+			case 12:
+				getInput(&val, &k, &t_val, 0, 1, 0);
+				head = delBeforeK(head, k);
+				break;
+			case 13:
+				getInput(&val, &k, &t_val, 0, 1, 0);
+				head = delKNode(head, k);
+				break;
+			case 14:
+				getInput(&val, &k, &t_val, 0, 0, 1);
+				head = delValue(head, t_val);
+				break;
+			case 15:
+				head = reverse(head);
+				break;
+			default:
+				printf("\nWrong choice !!!!");
+		}
+	}
 
 }
 
@@ -342,5 +416,39 @@ node* delValue(node* head, int val)
 	printf("\nDeleted value %d",t1->data);
 	free(t1);
 
+	return head;
+}
+
+void getInput(int* val, int* index, int* t_val, int f1, int f2, int f3)
+{
+	int v, i, target;
+	if(f1) {
+		printf("\nEnter new node data: ");
+		scanf("%d", &v);
+		*val = v;
+	}
+	if(f2) {
+		printf("\nEnter K'th index: ");
+		scanf("%d", &i);
+		*index = i;
+	}
+	if(f3) {
+		printf("\nEnter other node data: ");
+		scanf("%d", &target);
+		*t_val = target;
+	}
+}
+
+node* reverse(node* head)
+{
+	node *curr = head, *t = NULL;
+	while(curr != NULL) {
+		t = curr->prev;
+		curr->prev = curr->next;
+		curr->next = t;
+		curr = curr->prev;
+	}
+	if(t != NULL)
+		head = t->prev;
 	return head;
 }

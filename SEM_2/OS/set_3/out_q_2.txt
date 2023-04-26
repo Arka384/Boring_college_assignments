@@ -1,0 +1,10 @@
+Total number of directories: 2
+Total number of files: 5
+
+emptyFolder/ -> Directory
+input_1.txt -> File
+out_1.txt -> File
+out_q_2.txt -> File
+q_1.sh -> File
+q_2.sh -> File
+temp/ -> Directory

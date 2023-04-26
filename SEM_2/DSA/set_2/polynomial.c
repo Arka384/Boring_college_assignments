@@ -18,6 +18,9 @@ int main()
 {
     node* first_List = NULL;
     node* second_List = NULL;
+    node* res = NULL;
+    int choice;
+
     printf("\nCreating first polynomial:\n");
     first_List = create(first_List);
     display(first_List);
@@ -26,12 +29,31 @@ int main()
     second_List = create(second_List);
     display(second_List);
 
-    // node* res = add_sub(first_List, second_List, 0); //add
-    // node* res = add_sub(first_List, second_List, 1); //sub
-
-    node* res = multiply(first_List, second_List);
-    printf("\n\n");
-    display(res);
+    while(1) {
+        printf("1 -> add polynomial_1 with polynomial_2\n");
+        printf("2 -> add polynomial_1 with polynomial_2\n");
+        printf("3 -> add polynomial_1 with polynomial_2\n");
+        printf("4 -> Exit\n");
+        scanf("%d", &choice);
+        switch(choice) {
+        case 1:
+            res = add_sub(first_List, second_List, 0);
+            display(res);
+            break;
+        case 2:
+            res = add_sub(first_List, second_List, 1);
+            display(res);
+            break;
+        case 3:
+            res = multiply(first_List, second_List);
+            display(res);
+            break;
+        case 4:
+            return 0;
+        default:
+            printf("\nInvalid option given\n");
+        }
+    }
 
 }
 
@@ -63,7 +85,6 @@ node* multiply(node* list_1, node* list_2)
             l2 = l2->next;
         }
         res = add_sub(res, currProd, 0);
-
         l1 = l1->next;
     }
 
@@ -74,15 +95,15 @@ node* add_sub(node* list_1, node* list_2, int mode)
 {
     if(list_1 == NULL && list_2 == NULL)
         return NULL;
-    else if(list_1 == NULL)
+    if(list_1 == NULL)
         return list_2;
-    else if(list_1 == NULL)
+    if(list_2 == NULL)
         return list_1;
 
 
     node* res = NULL;   //added polynomial
     node* resLast = NULL;
-    while(list_1->exp > list_2->exp) {
+    while((list_1 != NULL && list_2 != NULL) && (list_1->exp > list_2->exp)) {
         node* t = getnode();
         t->coeff = list_1->coeff;
         t->exp = list_1->exp;
@@ -97,7 +118,7 @@ node* add_sub(node* list_1, node* list_2, int mode)
         list_1 = list_1->next;
     }
 
-    while(list_2->exp > list_1->exp) {
+    while((list_1 != NULL && list_2 != NULL) && (list_2->exp > list_1->exp)) {
         node* t = getnode();
         if(mode == 0)
             t->coeff = list_2->coeff;
@@ -169,29 +190,37 @@ void display(node *head)
 {
 	node *t;
 	if(head == NULL)
-		printf("\nList is empty");
+		printf("\npolynomial is empty");
 	else
 	{
 		t = head;
-		printf("\nThe linked list is-> ");
+		printf("\nThe polynomial list is-> ");
 		while(t != NULL)
 		{
-			printf("%dx^%d + ",t->coeff, t->exp);
+			printf("%dx^%d",t->coeff, t->exp);
 			t = t->next;
+            if(t != NULL)
+                printf(" + ");
 		}
+        printf("\n");
 	}
 }
 
 node* create(node *head)
 {   
-    int highestDeg;
+    int highestDeg, x;
     printf("\nEnter the degree of the polynomial: ");
     scanf("%d", &highestDeg);
 
     while (highestDeg > -1) {
         printf("\nEnter coefficient for term with degree %d: ", highestDeg);
         node* t = getnode();
-        scanf("%d", &t->coeff);
+        scanf("%d", &x);
+        if(x == 0) {
+            highestDeg--;
+            continue;
+        }
+        t->coeff = x;
         t->exp = highestDeg;
         if(head == NULL)
             head = t;

@@ -1,0 +1,146 @@
+Q_1
+---------------------------
+CREATE TABLE EMPLOYEE
+(
+	EMP_CODE varchar(16),
+	EMP_NAME varchar(20),
+	DEPT_CODE varchar(16),
+	DESIG_CODE varchar(16),
+	SEX varchar(1),
+	ADDRESS varchar(25),
+	CITY varchar(20),
+	STATE varchar(20),
+	PIN varchar(6),
+	BASIC int(7),
+	JN_DT DATE,
+	primary key (EMP_CODE)
+);
+
+CREATE TABLE DESIGNATION
+(
+	DESIG_CODE varchar(16),
+	DESIG_DESC varchar(20),
+	primary key (DESIG_CODE)
+);
+
+CREATE TABLE DEPARTMENT
+(
+	DEPT_CODE varchar(16),
+	DEPT_NAME varchar(20),
+	primary key (DEPT_CODE)
+);
+///////////////////////////////////
+
+q_2
+---------------------
+desc EMPLOYEE;
+desc DESIGNATION;
+desc DEPARTMENT;
+///////////////////////////////////
+
+q_3
+---------------------
+INSERT INTO DESIGNATION (DESIG_CODE, DESIG_DESC)
+VALUES ('MGR', 'Manager'), 
+('EXE', 'Executive'), 
+('OFF', 'Officer'), 
+('CLK', 'Clerk'), 
+('HLP', 'Helper');
+
+INSERT INTO DEPARTMENT (DEPT_CODE, DEPT_NAME)
+VALUES ('PER', 'Personnel'), 
+('PRO', 'Production'), 
+('PUR', 'Purchase'), 
+('FIN', 'Finance'), 
+('RES', 'Research');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('001', 'Adam Smith', 'PER', 'MGR', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01'),
+       ('002', 'Maddie Morris', 'PRO', 'EXE', 'F', '456 Elm St', 'Denver', 'CO', '80001', 30000, '20015-03-10'),
+       ('003', 'Edward Johnson', 'PUR', 'OFF', 'M', '789 Oak St', 'Atlanta', 'GA', '30002', 40000, '2010-06-25');
+	   ('004', 'Jenifer Martin', 'FIN', 'OFF', 'F', '245 Perl St', 'Nashville', 'TN', '80001', 37010, '2008-01-24'),
+///////////////////////////////////
+
+q_4
+---------------------
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, JN_DT)
+VALUES ('004', 'Sophie Matrin', 'CLK', 'F', '246 Maple St', 'Boston', 'MA', '02101', '2014-04-28'),
+       ('005', 'Thomas Brown', 'HLP', 'M', '369 Pine St', 'San Francisco', 'CA', '94101', '2016-10-12');
+///////////////////////////////////
+
+q_5
+---------------------
+select * from employee where dept_code is NULL;
+////////////////////////////////////
+
+q_6
+---------------------
+select * from employee where basic = 0;
+////////////////////////////////////
+
+q_7
+---------------------
+select * from employee where basic is NULL;
+////////////////////////////////////
+
+q_8
+---------------------
+select avg(basic) as 'Avg_Basic' from employee;	//40k
+////////////////////////////////////
+
+q_9
+---------------------
+update employee set basic = 0 where basic is NULL;
+////////////////////////////////////
+
+q_10
+---------------------
+select avg(basic) as 'Avg_Basic' from employee; //24k
+////////////////////////////////////
+
+q_11
+---------------------
+delete from employee where dept_code is NULL;
+////////////////////////////////////
+
+q_12
+----------------------
+select emp_name, basic + (basic * 0.4) + (basic * 0.5) as "Net_Pay" from employee;
+////////////////////////////////////
+
+q_13
+----------------------
+select upper(emp_name), basic from employee order by dept_code;
+////////////////////////////////////
+
+q_14
+----------------------
+select * from employee where jn_dt > '2010-01-01';
+////////////////////////////////////
+
+q_15
+----------------------
+select count(emp_code) as 'Joiners on January'  from employee where month(jn_dt) = '01';
+////////////////////////////////////
+
+q_16
+----------------------
+select max(basic) as 'Max_Basic', min(basic) as 'Min_Basic' from employee;
+/////////////////////////////////////
+
+q_17
+----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -20,10 +20,13 @@ public class q_1 {
             accounts[i] = new Account(id, name, phone, (privi == 1) ? true : false);
         }
         
-        while(true) {
+        boolean execute = true;
+        while(execute) {
             System.out.println("1->account info\n2->find credit limit\n3->find current loan amount");
             System.out.println("4->loan can seek\n5->get loan\n6->Exit\nEnter choice: ");
             int nChoice = sc.nextInt();
+            if(nChoice == 6)
+                break;
             System.out.println("Enter account id to search: ");
             int currId = sc.nextInt();
             Account currAc = null;
@@ -55,13 +58,11 @@ public class q_1 {
                     if(currAc.askForLoan(loan))
                         System.out.println("Loan granted");
                     break;
-                case 6:
-                    return;
                 default:
                     System.out.println("Wrong choice");
             }
         }
-        
+        sc.close();
     }    
 }
 

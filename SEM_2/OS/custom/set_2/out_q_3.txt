@@ -1,0 +1,16 @@
+vendor_id	: GenuineIntel
+vendor_id	: GenuineIntel
+vendor_id	: GenuineIntel
+vendor_id	: GenuineIntel
+model name	: Intel(R) Core(TM) i3-3220 CPU @ 3.30GHz
+model name	: Intel(R) Core(TM) i3-3220 CPU @ 3.30GHz
+model name	: Intel(R) Core(TM) i3-3220 CPU @ 3.30GHz
+model name	: Intel(R) Core(TM) i3-3220 CPU @ 3.30GHz
+cpu MHz		: 1596.347
+cpu MHz		: 1596.362
+cpu MHz		: 1596.355
+cpu MHz		: 1596.369
+cache size	: 3072 KB
+cache size	: 3072 KB
+cache size	: 3072 KB
+cache size	: 3072 KB

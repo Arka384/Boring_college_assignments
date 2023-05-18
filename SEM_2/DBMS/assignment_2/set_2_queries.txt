@@ -1,0 +1,27 @@
+q_1
+-----------------------------
+select dept_code, max(basic), min(basic), avg(basic) from employee group by dept_code;
+////////////////////////////////////////////////////
+
+q_2
+------------------------------
+select dept_code, count(emp_code) as 'Count of Female' from employee where sex = 'F' group by dept_code;
+///////////////////////////////////////////////////
+
+q_3
+-------------------------------
+select distinct(dept_code), city, count(*) from employee group by city;
+////////////////////////////////////////////////////
+
+q_4
+-------------------------------
+select desig_code, dept_code, count(emp_code) from employee where year(jn_dt) = '2002' group by desig_code;
+
+q_5
+--------------------------------
+select dept_code, sum(basic) from employee where sex = 'M' group by dept_code having sum(basic) > 50000;
+
+q_6
+--------------------------------
+select e.emp_name, d.desig_desc from employee e, designation d
+where e.desig_code = d.desig_code;

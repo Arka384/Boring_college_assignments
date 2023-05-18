@@ -1,0 +1,120 @@
+
+main() {
+
+	setChoice=0
+	qChoice=0
+	while true
+	do
+		echo "1 -> set_1"
+		echo "2 -> set_2"
+		echo "3 -> set_3"
+		echo "4 -> Exit"
+		echo "Enter your choice: "
+		read setChoice
+
+		if [[ $setChoice -ne 1 && $setChoice -ne 2 && $setChoice -ne 3 && $setChoice -ne 4 ]];
+		then
+			echo "Wrong choice"
+		fi
+
+		case $setChoice in
+		1)
+			cd ./set_1
+			while true
+			do
+				progName="assignment_1_"
+				echo "1 -> question_1"
+				echo "2 -> question_2"
+				echo "3 -> question_3"
+				echo "4 -> question_4"
+				echo "5 -> question_5"
+				echo "6 -> go to set choice"
+				read qChoice
+				if [[ $qChoice -eq 6 ]]; then
+					cd $OLDPWD
+					break
+				fi
+				progName+=$qChoice
+				progName+=".sh"
+				if [ $qChoice -eq 5 ]
+				then
+					echo "Enter user name to find: "
+					read userName
+					bash $progName "$userName"
+				else
+					bash $progName
+				fi
+			done
+		;;
+
+		2)
+			cd ./set_2
+			while true
+			do
+				progName="q_"
+				echo "1 -> question_1"
+				echo "2 -> question_2"
+				echo "3 -> question_3"
+				echo "4 -> question_4"
+				echo "5 -> question_5"
+				echo "6 -> go to set choice"
+				read qChoice
+				if [[ $qChoice -eq 6 ]]; then
+					cd $OLDPWD
+					break
+				fi
+				progName+=$qChoice
+				progName+=".sh"
+				if [ $qChoice -eq 5 ]
+				then
+					echo "Enter folder name to find: "
+					read folderName
+					bash $progName "$folderName"
+				else
+					bash $progName
+				fi
+			done
+		;;	
+
+		3)
+			cd ./set_3
+			while true
+			do
+				progName="q_"
+				echo "1 -> question_1"
+				echo "2 -> question_2"
+				echo "3 -> question_3"
+				echo "4 -> question_4"
+				echo "5 -> question_5"
+				echo "6 -> question_6"
+				echo "7 -> go to set choice"
+				read qChoice
+				if [[ $qChoice -eq 7 ]]; then
+					cd $OLDPWD
+					break
+				fi
+				progName+=$qChoice
+				progName+=".sh"
+				if [[ $qChoice -eq 5 ]];
+				then
+					echo "Enter target folder: "
+					read folderName
+					cd ./$folderName
+					bash $progName "$folderName"
+					cd $OLDPWD
+				else
+					bash $progName
+				fi
+			done
+		;;
+
+		4)
+			break
+		esac
+
+
+	done
+
+}
+
+main $@

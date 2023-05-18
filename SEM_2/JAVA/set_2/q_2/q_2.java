@@ -35,7 +35,9 @@ public class q_2 {
             System.out.println("2 -> view all faculties");
             System.out.println("3 -> update student info");
             System.out.println("4 -> update faculty info");
-            System.out.println("5 -> exit");
+            System.out.println("5 -> add new student");
+            System.out.println("6 -> add new faculty");
+            System.out.println("7 -> exit");
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
@@ -63,18 +65,7 @@ public class q_2 {
                     int choice2 = sc.nextInt();
                     switch (choice2) {
                         case 1:
-                            System.out.println("Enter new address");
-                            System.out.println("Enter house number");
-                            int house = sc.nextInt();
-                            System.out.println("Enter new street");
-                            String street = sc.next();
-                            System.out.println("Enter new city");
-                            String city = sc.next();
-                            System.out.println("Enter new state");
-                            String state = sc.next();
-                            System.out.println("Enter new pincode");
-                            int pincode = sc.nextInt();
-                            curr.setAddress(new Address(house, street, city, state, pincode));
+                            curr.setAddress(inputAddress(sc));
                             break;
                         case 2:
                             System.out.println("Enter new course");
@@ -111,21 +102,34 @@ public class q_2 {
                             facCurr.setSpec(specification);
                             break;
                         case 3:
-                            System.out.println("Enter new address");
-                            System.out.println("Enter house number");
-                            int house = sc.nextInt();
-                            System.out.println("Enter new street");
-                            String street = sc.next();
-                            System.out.println("Enter new city");
-                            String city = sc.next();
-                            System.out.println("Enter new state");
-                            String state = sc.next();
-                            System.out.println("Enter new pincode");
-                            int pincode = sc.nextInt();
-                            facCurr.setAddress(new Address(house, street, city, state, pincode));
+                            facCurr.setAddress(inputAddress(sc));
                     }
                     break;
                 case 5:
+                    System.out.println("Enter new Student information");
+                    System.out.println("Enter name: ");
+                    String name = sc.next();
+                    System.out.println("Enter new course");
+                    String course = sc.next();
+                    System.out.println("Enter student roll");
+                    int troll = sc.nextInt();
+                    Student stud = new Student(name, inputAddress(sc), troll, course);
+                    students.add(stud);
+                    break;
+                case 6:
+                    System.out.println("Enter new Faculty information");
+                    System.out.println("Enter new department");
+                    String department = sc.next();
+                    System.out.println("Enter new specification");
+                    String specification = sc.next();
+                    System.out.println("Enter name: ");
+                    String ename = sc.next();
+                    System.out.println("Enter Faculty id");
+                    int eid = sc.nextInt();
+                    Faculty fac = new Faculty(ename, inputAddress(sc), eid, department, specification);
+                    faculties.add(fac);
+                    break;
+                case 7:
                     executed = false;
                 default:
                     break;
@@ -135,4 +139,22 @@ public class q_2 {
 
         sc.close();
     }
+
+    static Address inputAddress(Scanner sc) {
+        System.out.println("Enter new address");
+        System.out.println("Enter house number");
+        int house = sc.nextInt();
+        System.out.println("Enter new street");
+        String street = sc.next();
+        System.out.println("Enter new city");
+        String city = sc.next();
+        System.out.println("Enter new state");
+        String state = sc.next();
+        System.out.println("Enter new pincode");
+        int pincode = sc.nextInt();
+        Address address = new Address(house, street, city, state, pincode);
+        return address;
+    }
+
+
 }

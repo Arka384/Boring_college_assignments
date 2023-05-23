@@ -2,8 +2,6 @@
 isValid() {
 	re='^[0-9]+([.][0-9]+)?$'
 	if ! [[ $1 =~ $re ]] ; then
-	   # echo "error: Not a number"
-	   # echo ""
 	   return 0
 	fi
 	return 1
@@ -23,6 +21,8 @@ main() {
 		isValid "$a"
 		x=$?
 		if [[ $x -ne 1 ]]; then
+			echo "contents not valid"
+			exit
 			a=0
 		fi
 
@@ -30,6 +30,8 @@ main() {
 		isValid "$a"
 		x=$?
 		if [[ $x -ne 1 ]]; then
+			echo "contents not valid"
+			exit
 			b=0
 		fi
 
@@ -37,6 +39,8 @@ main() {
 		isValid "$a"
 		x=$?
 		if [[ $x -ne 1 ]]; then
+			echo "contents not valid"
+			exit
 			c=0
 		fi
 		
@@ -48,6 +52,5 @@ main() {
 	echo "Total sum is: $sum"
 }
 
-main < input_1.txt > out_q_1.txt
-cat out_q_1.txt
+main < $1 
 

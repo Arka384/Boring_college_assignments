@@ -12,7 +12,7 @@ main() {
 		echo "Enter your choice: "
 		read setChoice
 
-		if [[ $setChoice -ne 1 && $setChoice -ne 2 && $setChoice -ne 3 && $setChoice -ne 4 ]];
+		if [ $setChoice -lt 1 -a $setChoice -gt 4 ]
 		then
 			echo "Wrong choice"
 		fi
@@ -23,19 +23,20 @@ main() {
 			while true
 			do
 				progName="assignment_1_"
+				echo "0 -> go to set choice"
 				echo "1 -> question_1"
 				echo "2 -> question_2"
 				echo "3 -> question_3"
 				echo "4 -> question_4"
 				echo "5 -> question_5"
-				echo "6 -> go to set choice"
 				read qChoice
-				if [[ $qChoice -eq 6 ]]; then
+				if [ $qChoice -eq 0 ] 
+				then
 					cd $OLDPWD
 					break
 				fi
-				progName+=$qChoice
-				progName+=".sh"
+				progName="${progName}${qChoice}"
+				progName="${progName}".sh""
 				if [ $qChoice -eq 5 ]
 				then
 					echo "Enter user name to find: "
@@ -52,19 +53,20 @@ main() {
 			while true
 			do
 				progName="q_"
+				echo "0 -> go to set choice"
 				echo "1 -> question_1"
 				echo "2 -> question_2"
 				echo "3 -> question_3"
 				echo "4 -> question_4"
 				echo "5 -> question_5"
-				echo "6 -> go to set choice"
 				read qChoice
-				if [[ $qChoice -eq 6 ]]; then
+				if [ $qChoice -eq 0 ]
+				then
 					cd $OLDPWD
 					break
 				fi
-				progName+=$qChoice
-				progName+=".sh"
+				progName="${progName}${qChoice}"
+				progName="${progName}".sh""
 				if [ $qChoice -eq 5 ]
 				then
 					echo "Enter folder name to find: "
@@ -81,21 +83,29 @@ main() {
 			while true
 			do
 				progName="q_"
+				echo "0 -> go to set choice"
 				echo "1 -> question_1"
 				echo "2 -> question_2"
 				echo "3 -> question_3"
 				echo "4 -> question_4"
 				echo "5 -> question_5"
 				echo "6 -> question_6"
-				echo "7 -> go to set choice"
 				read qChoice
-				if [[ $qChoice -eq 7 ]]; then
+				if [ $qChoice -eq 0 ]
+				then
 					cd $OLDPWD
 					break
 				fi
-				progName+=$qChoice
-				progName+=".sh"
-				if [[ $qChoice -eq 5 ]];
+				progName="${progName}${qChoice}"
+				progName="${progName}".sh""
+				
+				if [ $qChoice -eq 1 ]
+				then
+					echo "Enter target filename: "
+					read fileName
+					bash $progName "$fileName"
+				
+				elif [ $qChoice -le 6 -a $qChoice -ge 4 ]
 				then
 					echo "Enter target folder: "
 					read folderName

@@ -2,7 +2,7 @@ Total number of directories: 3
 Total number of files: 12
 
 emptyFolder/ -> Directory
-f~ -> File
+exeToshell.sh -> File
 input_1.txt -> File
 out_q_1.txt -> File
 out_q_2.txt -> File

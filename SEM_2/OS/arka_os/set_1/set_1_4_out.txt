@@ -1,0 +1,2 @@
+Given number is: 12345
+Sum of digits is: 54321

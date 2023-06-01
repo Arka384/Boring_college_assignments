@@ -1,0 +1,4 @@
+enter your basic salary 100
+da is=40
+hra is=10
+net payment is 150

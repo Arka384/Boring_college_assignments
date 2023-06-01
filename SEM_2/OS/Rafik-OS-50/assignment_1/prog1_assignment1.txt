@@ -1,0 +1,4 @@
+lenth=10
+breadth=15
+the area of the triangel 150
+the perimeter of the triangel 50

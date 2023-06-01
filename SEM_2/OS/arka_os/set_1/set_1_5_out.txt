@@ -1,0 +1,7 @@
+UserName, : user1
+Password, : x
+UserId, : 1001
+GroupId, : 1001
+UserId info, : USER1,,,
+Home Directory, : /home/user1
+Login shell : /bin/bash

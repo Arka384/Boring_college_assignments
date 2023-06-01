@@ -1,0 +1,2 @@
+Given number is: 23541
+Sum of digits is: 15

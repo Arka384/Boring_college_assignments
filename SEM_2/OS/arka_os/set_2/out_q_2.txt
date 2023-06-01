@@ -1,0 +1,11 @@
+'/home/user1/bin' -> does not exist
+'/home/user1/.local/bin' -> does not exist
+'/usr/local/sbin' -> drwxr-xr-x Aug 7 2020
+'/usr/local/bin' -> drwxr-xr-x Aug 7 2020
+'/usr/sbin' -> drwxr-xr-x Dec 21 11:23
+'/usr/bin' -> drwxr-xr-x Dec 21 11:24
+'/sbin' -> drwxr-xr-x Dec 21 11:19
+'/bin' -> drwxr-xr-x Dec 21 11:14
+'/usr/games' -> drwxr-xr-x Aug 7 2020
+'/usr/local/games' -> drwxr-xr-x Aug 7 2020
+'/snap/bin' -> does not exist

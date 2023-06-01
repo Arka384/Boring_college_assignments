@@ -1,0 +1,10 @@
+Enter the user login name:  root
+
+Detailed user login information of user root:
+Username: root
+Password: x
+User Id: 0
+Group Id: 0
+User Id Info: root
+Home Directory: /root
+Login Shell: /bin/bash

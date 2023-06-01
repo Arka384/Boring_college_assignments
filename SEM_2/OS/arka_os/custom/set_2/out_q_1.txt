@@ -1,0 +1,13 @@
+folder/ -> Directory
+hello.txt -> File
+out_q_1.txt -> File
+out_q_2.txt -> File
+out_q_3.txt -> File
+out_q_4.txt -> File
+out_q_5.txt -> File
+q_1.sh -> File
+q_2.sh -> File
+q_3.sh -> File
+q_4.sh -> File
+q_5.sh -> File
+temp/ -> Directory

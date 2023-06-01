@@ -1,0 +1,19 @@
+/home/user1/bin does not exit
+/home/user1/.local/bin does not exit
+Directory: /usr/local/sbin
+drwxr-xr-x 2 root root 4096 Aug  7  2020 /usr/local/sbin
+Directory: /usr/local/bin
+drwxr-xr-x 2 root root 4096 Aug  7  2020 /usr/local/bin
+Directory: /usr/sbin
+drwxr-xr-x 2 root root 12288 Apr  5 11:19 /usr/sbin
+Directory: /usr/bin
+drwxr-xr-x 2 root root 57344 Apr  5 11:21 /usr/bin
+Directory: /sbin
+drwxr-xr-x 2 root root 12288 Apr  5 11:16 /sbin
+Directory: /bin
+drwxr-xr-x 2 root root 4096 Apr  5 11:16 /bin
+Directory: /usr/games
+drwxr-xr-x 2 root root 4096 Aug  7  2020 /usr/games
+Directory: /usr/local/games
+drwxr-xr-x 2 root root 4096 Aug  7  2020 /usr/local/games
+/snap/bin does not exit

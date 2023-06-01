@@ -16,12 +16,105 @@ select distinct(dept_code), city, count(*) from employee group by city;
 q_4
 -------------------------------
 select desig_code, dept_code, count(emp_code) from employee where year(jn_dt) = '2002' group by desig_code;
+////////////////////////////////////////////////////
 
 q_5
 --------------------------------
 select dept_code, sum(basic) from employee where sex = 'M' group by dept_code having sum(basic) > 50000;
+////////////////////////////////////////////////////
 
 q_6
 --------------------------------
 select e.emp_name, d.desig_desc from employee e, designation d
 where e.desig_code = d.desig_code;
+////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+q_13
+---------------------------------
+select d.dept_name, count(*) as NO_OF_MANAGER
+from employee e, department d where
+e.dept_code = d.dept_code
+and e.desig_code in 
+(select desig_code from designation
+where desig_desc = 'Manager');
+////////////////////////////////////////////////////
+
+q_14
+---------------------------------
+select distinct basic as Max_Basic from employee e
+where e.basic >= all(select basic from employee);
+////////////////////////////////////////////////////
+
+q_15
+---------------------------------
+select distinct basic as Min_Basic from employee e
+where e.basic <= all(select basic from employee);
+////////////////////////////////////////////////////
+
+q_16
+---------------------------------
+select d.dept_name, e.basic from employee e, department d
+where e.dept_code = d.dept_code
+and e.basic >= all(select basic from employee);
+////////////////////////////////////////////////////
+
+select dept_name, basic as AVERAGE_BASIC from (
+	select dept_name, avg(basic) as Basic from employee e, department d
+	where e.dept_code = d.dept_code group by dept_name)
+where basic = (select max(basic) from (
+	select dept_name, avg(basic) as Basic from employee e, department d
+	where e.dept_code = d.dept_code group by dept_name)
+);
+
+//
+SELECT DEPT_NAME, BASIC AS AVERAGE_BASIC FROM
+(SELECT DEPT_NAME , AVG(BASIC) AS BASIC FROM EMPLOYEE e, DEPARTMENT d
+WHERE e.DEPT_CODE = d.DEPT_CODE GROUP BY DEPT_NAME)
+WHERE BASIC = (SELECT MAX(BASIC) FROM
+(SELECT DEPT_NAME, AVG(BASIC) AS BASIC FROM EMPLOYEE e,
+DEPARTMENT d WHERE
+e.DEPT_CODE = d.DEPT_CODE GROUP BY DEPT_NAME));
+//////////////////////////////////////////////////////////
+
+q_17
+--------------------------------
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('008', 'Adam Smith', 'PUR', 'Manager', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('009', 'Adam Smith', 'PUR', 'Worker', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('010', 'Adam Smith', 'PUR', 'Client', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('011', 'Adam Smith', 'PUR', 'Executive', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+
+
+/////////////////////////////////////////////
+
+q_18
+-------------------------
+delete from employee where desig_code not in 
+(select desig_code from designation);
+//////////////////////////////////////////////
+
+q_19
+--------------------------
+select e.emp_name, e.basic from employee e, department d where
+e.dept_code = d.dept_code and basic > (
+	select avg(basic) from employee e, department d where
+	e.dept_code = d.dept_code and e.sex = 'F'
+)
+and e.sex = 'F';
+////////////////////////////////////////////
+
+q_20
+----------------------------
+select count(*) as NO_OF_FEMALE_MANAGER from employee e, designation d
+where e.desig_code = d.desig_code and e.sex = 'F'
+and d.desig_code = "MGR";
+///////////////////////////////////////////

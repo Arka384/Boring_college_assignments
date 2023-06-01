@@ -1,0 +1,3 @@
+Given length is: -2
+Area of Rect: -4
+Perimeter of Rect: 0

@@ -1,0 +1,13 @@
+prog1_assignment1.sh is a regular file.
+prog1_assignment1.txt is a regular file.
+prog1_assignment2.sh is a regular file.
+prog1_assignment2.txt is a regular file.
+prog2_assignment1.sh is a regular file.
+prog2_assignment1.txt is a regular file.
+prog3_assignment1.sh is a regular file.
+prog3_assignment1.txt is a regular file.
+prog4_assignment1.sh is a regular file.
+prog4_assignment1.txt is a regular file.
+prog5_assignment1.sh is a regular file.
+prog5_assignment1.txt is a regular file.
+test directory is a directory.

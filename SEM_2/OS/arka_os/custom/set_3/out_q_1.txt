@@ -1,0 +1,4 @@
+Sum in line:1 is: 6
+Sum in line:2 is: 15
+Sum in line:3 is: 24
+Total sum is: 45

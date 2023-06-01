@@ -1,0 +1,2 @@
+the five digit number 12345
+the reverse digit is 54321

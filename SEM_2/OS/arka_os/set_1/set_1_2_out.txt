@@ -1,0 +1,2 @@
+Given basic salary: 12345
+Total salary: 13579.50 	 DA: 493.80 	 HRA: 740.70

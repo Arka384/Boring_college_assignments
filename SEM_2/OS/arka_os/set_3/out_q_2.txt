@@ -1,0 +1,17 @@
+Total number of directories: 3
+Total number of files: 11
+
+emptyFolder/ -> Directory
+input_1.txt -> File
+out_q_1.txt -> File
+out_q_2.txt -> File
+out_q_3.txt -> File
+out_q_6.txt -> File
+q_1.sh -> File
+q_2.sh -> File
+q_3.sh -> File
+q_4.sh -> File
+q_5.sh -> File
+q_6.sh -> File
+temp/ -> Directory
+testFolder/ -> Directory

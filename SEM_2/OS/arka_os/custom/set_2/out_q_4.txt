@@ -1,0 +1,6 @@
+Home directory : sumit user1
+OS type : GNU/Linux
+version : #146~16.04.1-Ubuntu SMP Tue Apr 13 09:27:15 UTC 2021
+release number : 4.15.0-142-generic
+kernel version : #146~16.04.1-Ubuntu SMP Tue Apr 13 09:27:15 UTC 2021
+All Path settings : /home/user1/bin:/home/user1/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin

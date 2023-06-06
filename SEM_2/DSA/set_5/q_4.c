@@ -1,20 +1,76 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+typedef struct Node {
     int data;
     struct Node* next;
-};
+}Node;
 
-void insertNode(struct Node** head, int value) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+void insertNode(Node** head, int value);
+void displayList(Node* head);
+void bubbleSort(Node* head);
+void insertionSort(Node** head);
+void selectionSort(Node* head);
+
+
+int main() {
+    Node* head = NULL;
+    int choice, value;
+
+    while(1) {
+        printf("\n1. Insert an element\n");
+        printf("2. Bubble Sort\n");
+        printf("3. Insertion Sort\n");
+        printf("4. Selection Sort\n");
+        printf("5. Display the list\n");
+        printf("6. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter the value to insert: ");
+                scanf("%d", &value);
+                insertNode(&head, value);
+                printf("Element inserted successfully.\n");
+                break;
+            case 2:
+                bubbleSort(head);
+                printf("List sorted using Bubble Sort (interchanging links).\n");
+                break;
+            case 3:
+                insertionSort(&head);
+                printf("List sorted using Insertion Sort (interchanging links).\n");
+                break;
+            case 4:
+                selectionSort(head);
+                printf("List sorted using Selection Sort.\n");
+                break;
+            case 5:
+                printf("List: ");
+                displayList(head);
+                break;
+            case 6:
+                return 0;
+                break;
+            default:
+                printf("Invalid choice!\n");
+                break;
+        }
+    };
+
+    return 0;
+}
+
+void insertNode(Node** head, int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->data = value;
     newNode->next = NULL;
 
     if (*head == NULL) {
         *head = newNode;
     } else {
-        struct Node* temp = *head;
+        Node* temp = *head;
         while (temp->next != NULL) {
             temp = temp->next;
         }
@@ -22,8 +78,8 @@ void insertNode(struct Node** head, int value) {
     }
 }
 
-void displayList(struct Node* head) {
-    struct Node* temp = head;
+void displayList(Node* head) {
+    Node* temp = head;
 
     while (temp != NULL) {
         printf("%d ", temp->data);
@@ -32,10 +88,10 @@ void displayList(struct Node* head) {
     printf("\n");
 }
 
-void bubbleSort(struct Node* head) {
+void bubbleSort(Node* head) {
     int swapped;
-    struct Node* temp;
-    struct Node* lastNode = NULL;
+    Node* temp;
+    Node* lastNode = NULL;
 
     if (head == NULL) {
         return;
@@ -52,7 +108,7 @@ void bubbleSort(struct Node* head) {
                 temp->next->data = tempData;
 
                 // Interchange links
-                struct Node* nextNode = temp->next;
+                Node* nextNode = temp->next;
                 temp->next = temp->next->next;
                 nextNode->next = temp;
 
@@ -64,13 +120,13 @@ void bubbleSort(struct Node* head) {
     } while (swapped);
 }
 
-void insertionSort(struct Node** head) {
-    struct Node* sorted = NULL;
-    struct Node* current = *head;
+void insertionSort(Node** head) {
+    Node* sorted = NULL;
+    Node* current = *head;
 
     while (current != NULL) {
-        struct Node* nextNode = current->next;
-        struct Node** sortedRef = &sorted;
+        Node* nextNode = current->next;
+        Node** sortedRef = &sorted;
 
         while (*sortedRef != NULL && (*sortedRef)->data < current->data) {
             sortedRef = &(*sortedRef)->next;
@@ -84,12 +140,12 @@ void insertionSort(struct Node** head) {
     *head = sorted;
 }
 
-void selectionSort(struct Node* head) {
-    struct Node* temp = head;
+void selectionSort(Node* head) {
+    Node* temp = head;
 
     while (temp != NULL) {
-        struct Node* minNode = temp;
-        struct Node* node = temp->next;
+        Node* minNode = temp;
+        Node* node = temp->next;
 
         while (node != NULL) {
             if (node->data < minNode->data) {
@@ -104,74 +160,4 @@ void selectionSort(struct Node* head) {
 
         temp = temp->next;
     }
-}
-
-void deleteList(struct Node** head) {
-    struct Node* current = *head;
-    struct Node* nextNode;
-
-    while (current != NULL) {
-        nextNode = current->next;
-        free(current);
-        current = nextNode;
-    }
-
-    *head = NULL;
-}
-
-int main() {
-    struct Node* head = NULL;
-    int choice, value;
-
-    do {
-        printf("\nMenu:\n");
-        printf("1. Insert an element\n");
-        printf("2. Bubble Sort\n");
-        printf("3. Insertion Sort\n");
-        printf("4. Selection Sort\n");
-        printf("5. Display the list\n");
-        printf("6. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
-
-        switch (choice) {
-            case 1:
-                printf("Enter the value to insert: ");
-                scanf("%d", &value);
-                insertNode(&head, value);
-                printf("Element inserted successfully.\n");
-                break;
-
-            case 2:
-                bubbleSort(head);
-                printf("List sorted using Bubble Sort (interchanging links).\n");
-                break;
-
-            case 3:
-                insertionSort(&head);
-                printf("List sorted using Insertion Sort (interchanging links).\n");
-                break;
-
-            case 4:
-                selectionSort(head);
-                printf("List sorted using Selection Sort.\n");
-                break;
-
-            case 5:
-                printf("List: ");
-                displayList(head);
-                break;
-
-            case 6:
-                deleteList(&head);
-                printf("Exiting program.\n");
-                break;
-
-            default:
-                printf("Invalid choice!\n");
-                break;
-        }
-    } while (choice != 6);
-
-    return 0;
 }

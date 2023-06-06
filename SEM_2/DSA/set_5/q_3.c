@@ -1,132 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+typedef struct Node {
     int data;
     struct Node* next;
-};
+}Node;
 
-void insertNode(struct Node** head, int value) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = value;
-    newNode->next = NULL;
+void insertNode(Node** head, int value);
+void displayList(Node* head);
+void bubbleSort(Node* head);
+void insertionSort(Node* head);
+void selectionSort(Node* head);
 
-    if (*head == NULL) {
-        *head = newNode;
-    } else {
-        struct Node* temp = *head;
-        while (temp->next != NULL) {
-            temp = temp->next;
-        }
-        temp->next = newNode;
-    }
-}
-
-void displayList(struct Node* head) {
-    struct Node* temp = head;
-
-    while (temp != NULL) {
-        printf("%d ", temp->data);
-        temp = temp->next;
-    }
-    printf("\n");
-}
-
-void bubbleSort(struct Node* head) {
-    int swapped;
-    struct Node* temp;
-    struct Node* lastNode = NULL;
-
-    if (head == NULL) {
-        return;
-    }
-
-    do {
-        swapped = 0;
-        temp = head;
-
-        while (temp->next != lastNode) {
-            if (temp->data > temp->next->data) {
-                int tempData = temp->data;
-                temp->data = temp->next->data;
-                temp->next->data = tempData;
-                swapped = 1;
-            }
-            temp = temp->next;
-        }
-        lastNode = temp;
-    } while (swapped);
-}
-
-void insertionSort(struct Node* head) {
-    struct Node* sorted = NULL;
-    struct Node* current = head;
-
-    while (current != NULL) {
-        struct Node* nextNode = current->next;
-        struct Node* prev = NULL;
-        struct Node* sortedTemp = sorted;
-
-        while (sortedTemp != NULL && sortedTemp->data < current->data) {
-            prev = sortedTemp;
-            sortedTemp = sortedTemp->next;
-        }
-
-        if (prev == NULL) {
-            current->next = sorted;
-            sorted = current;
-        } else {
-            prev->next = current;
-            current->next = sortedTemp;
-        }
-        current = nextNode;
-    }
-
-    head = sorted;
-}
-
-void selectionSort(struct Node* head) {
-    struct Node* temp = head;
-
-    while (temp != NULL) {
-        struct Node* minNode = temp;
-        struct Node* node = temp->next;
-
-        while (node != NULL) {
-            if (node->data < minNode->data) {
-                minNode = node;
-            }
-            node = node->next;
-        }
-
-        int tempData = temp->data;
-        temp->data = minNode->data;
-        minNode->data = tempData;
-
-        temp = temp->next;
-    }
-}
-
-void deleteList(struct Node** head) {
-    struct Node* current = *head;
-    struct Node* nextNode;
-
-    while (current != NULL) {
-        nextNode = current->next;
-        free(current);
-        current = nextNode;
-    }
-
-    *head = NULL;
-}
 
 int main() {
-    struct Node* head = NULL;
+    Node* head = NULL;
     int choice, value;
 
-    do {
-        printf("\nMenu:\n");
-        printf("1. Insert an element\n");
+    while(1) {
+        printf("\n1. Insert an element\n");
         printf("2. Bubble Sort\n");
         printf("3. Insertion Sort\n");
         printf("4. Selection Sort\n");
@@ -164,15 +56,113 @@ int main() {
                 break;
 
             case 6:
-                deleteList(&head);
-                printf("Exiting program.\n");
+                return 0;
                 break;
 
             default:
                 printf("Invalid choice!\n");
                 break;
         }
-    } while (choice != 6);
+    };
 
     return 0;
+}
+
+void insertNode(Node** head, int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = value;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        Node* temp = *head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+}
+
+void displayList(Node* head) {
+    Node* temp = head;
+
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+void bubbleSort(Node* head) {
+    int swapped;
+    Node* temp;
+    Node* lastNode = NULL;
+
+    if (head == NULL)
+        return;
+
+    do {
+        swapped = 0;
+        temp = head;
+
+        while (temp->next != lastNode) {
+            if (temp->data > temp->next->data) {
+                int tempData = temp->data;
+                temp->data = temp->next->data;
+                temp->next->data = tempData;
+                swapped = 1;
+            }
+            temp = temp->next;
+        }
+        lastNode = temp;
+    } while (swapped);
+}
+
+void insertionSort(Node* head) {
+    Node* sorted = NULL;
+    Node* current = head;
+
+    while (current != NULL) {
+        Node* nextNode = current->next;
+        Node* prev = NULL;
+        Node* sortedTemp = sorted;
+
+        while (sortedTemp != NULL && sortedTemp->data < current->data) {
+            prev = sortedTemp;
+            sortedTemp = sortedTemp->next;
+        }
+
+        if (prev == NULL) {
+            current->next = sorted;
+            sorted = current;
+        } else {
+            prev->next = current;
+            current->next = sortedTemp;
+        }
+        current = nextNode;
+    }
+
+    head = sorted;
+}
+
+void selectionSort(Node* head) {
+    Node* temp = head;
+
+    while (temp != NULL) {
+        Node* minNode = temp;
+        Node* node = temp->next;
+
+        while (node != NULL) {
+            if (node->data < minNode->data)
+                minNode = node;
+            node = node->next;
+        }
+
+        int tempData = temp->data;
+        temp->data = minNode->data;
+        minNode->data = tempData;
+
+        temp = temp->next;
+    }
 }

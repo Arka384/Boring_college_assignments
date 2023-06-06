@@ -5,11 +5,12 @@ void mergeSort(int* , int, int );
 void merge(int* , int, int , int);
 void quickSort(int* , int, int);
 int partition(int* , int, int);
+void display(int*, int );
 
 int main()
 {
     int *arr;
-    int size;
+    int size, choice;
     
     printf("\nEnter the size of the array: ");
     scanf("%d", &size);
@@ -18,14 +19,28 @@ int main()
     for(int i=0; i<size; i++)
         scanf("%d", &arr[i]);
     
-    //mergeSort(arr, 0, size - 1);
-    //quickSort(arr, 0, size - 1);
+    while(1) {
+        printf("\n1 -> Merge sort\n2 -> Quick sort\n3 -> display\n4 -> exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+        switch(choice) {
+        case 1:
+            mergeSort(arr, 0, size - 1);
+            break;
+        case 2:
+            quickSort(arr, 0, size - 1);
+            break;
+        case 3:
+            display(arr, size);
+            break;
+        case 4:
+            return 0;
+        default:
+            break;
+        }   
+    }
 
-    printf("\nSorted array: \n");
-    for (int i = 0; i < size; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-
+    return 0;
 }
 
 void quickSort(int* arr, int start, int end) {
@@ -97,5 +112,11 @@ void merge(int* arr, int start, int mid, int end) {
 
     for(int k = 0,i = start; i <= end; i++, k++)
         arr[i] = temp[k];
+}
 
+void display(int* arr, int size) {
+    printf("\nArray elements: \n");
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
 }

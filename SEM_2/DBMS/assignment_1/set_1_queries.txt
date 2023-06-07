@@ -34,8 +34,40 @@ CREATE TABLE DEPARTMENT
 q_2
 ---------------------
 desc EMPLOYEE;
+MariaDB [assignment_1]> desc EMPLOYEE;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| EMP_CODE   | varchar(16) | NO   | PRI | NULL    |       |
+| EMP_NAME   | varchar(20) | YES  |     | NULL    |       |
+| DEPT_CODE  | varchar(16) | YES  |     | NULL    |       |
+| DESIG_CODE | varchar(16) | YES  |     | NULL    |       |
+| SEX        | varchar(1)  | YES  |     | NULL    |       |
+| ADDRESS    | varchar(25) | YES  |     | NULL    |       |
+| CITY       | varchar(20) | YES  |     | NULL    |       |
+| STATE      | varchar(20) | YES  |     | NULL    |       |
+| PIN        | varchar(6)  | YES  |     | NULL    |       |
+| BASIC      | int(7)      | YES  |     | NULL    |       |
+| JN_DT      | date        | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
 desc DESIGNATION;
+MariaDB [assignment_1]> desc DESIGNATION;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| DESIG_CODE | varchar(16) | NO   | PRI | NULL    |       |
+| DESIG_DESC | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
 desc DEPARTMENT;
+MariaDB [assignment_1]> desc DEPARTMENT;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPT_CODE | varchar(16) | NO   | PRI | NULL    |       |
+| DEPT_NAME | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
 ///////////////////////////////////
 
 q_3
@@ -49,107 +81,265 @@ VALUES ('MGR', 'Manager'),
 
 INSERT INTO DEPARTMENT (DEPT_CODE, DEPT_NAME)
 VALUES ('PER', 'Personnel'), 
-('PRO', 'Production'), 
+('PRO', 'Production'), 	
 ('PUR', 'Purchase'), 
 ('FIN', 'Finance'), 
 ('RES', 'Research');
 
 INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
-VALUES ('001', 'Adam Smith', 'PUR', 'MGR', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01'),
-       ('002', 'Maddie Morris', 'PRO', 'EXE', 'F', '456 Elm St', 'Denver', 'CO', '80001', 30000, '20015-03-10'),
-       ('003', 'Edward Johnson', 'PUR', 'OFF', 'M', '789 Oak St', 'Atlanta', 'GA', '30002', 40000, '2010-06-25');
-	   ('004', 'Jenifer Martin', 'MGR', 'OFF', 'F', '245 Perl St', 'Nashville', 'TN', '80001', 37010, '2008-01-24'),
-	   ('005', 'Sam Joe', 'FIN', 'CLK', 'M', '245 New St', 'Denver', 'CO', '80001', 35000, '2002-02-24'),
-	   ('006', 'Jessica Altman', 'PUR', 'HLP', 'F', '245 Old St', 'Atlanta', 'GA', '80001', 45000, '2003-05-22'),
-	   ('007', 'Sarra Jhones', 'PRO', 'CLK', 'F', '160 Saint St', 'Nashville', 'TN', '20001', 48000, '2001-06-18'),
-	   ('008', 'sadf dfd', 'FIN', 'CLK', 'F', '160 Saint St', 'Nashville', 'TN', '20001', 48000, '2002-06-18'),
+VALUES ('001', 'Adam Smith', 'PUR', 'MGR', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('002', 'Maddie Morris', 'PRO', 'EXE', 'F', '456 Elm St', 'Denver', 'CO', '80001', 30000, '20015-03-10');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('003', 'Edward Johnson', 'PUR', 'OFF', 'M', '789 Oak St', 'Atlanta', 'GA', '30002', 40000, '2010-06-25');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('004', 'Jenifer Martin', 'MGR', 'OFF', 'F', '245 Perl St', 'Nashville', 'TN', '80001', 37010, '2008-01-24');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('005', 'Sam Joe', 'FIN', 'CLK', 'M', '245 New St', 'Denver', 'CO', '80001', 35000, '2002-02-24');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('006', 'Jessica Altman', 'PUR', 'HLP', 'F', '245 Old St', 'Atlanta', 'GA', '80001', 45000, '2003-05-22');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('007', 'Sarra Jhones', 'PRO', 'CLK', 'F', '160 Saint St', 'Nashville', 'TN', '20001', 48000, '2001-06-18');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
+VALUES ('008', 'Maxine', 'FIN', 'CLK', 'F', '160 Perl St', 'Nashville', 'TN', '20521', 48000, '2002-06-18');
+
+MariaDB [assignment_1]> select * from employee;
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME       | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS      | CITY      | STATE | PIN   | BASIC | JN_DT      |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| 001      | Adam Smith     | PUR       | MGR        | M    | 123 Main St  | Berkeley  | CA    | 90001 | 50000 | 2002-01-01 |
+| 002      | Maddie Morris  | PRO       | EXE        | F    | 456 Elm St   | Denver    | CO    | 80001 |     0 | 0000-00-00 |
+| 003      | Edward Johnson | PUR       | OFF        | M    | 789 Oak St   | Atlanta   | GA    | 30002 | 40000 | 2010-06-25 |
+| 004      | Jenifer Martin | MGR       | OFF        | F    | 245 Perl St  | Nashville | TN    | 80001 | 37010 | 2008-01-24 |
+| 005      | Sam Joe        | FIN       | CLK        | M    | 245 New St   | Denver    | CO    | 80001 | 35000 | 2002-02-24 |
+| 006      | Jessica Altman | PUR       | HLP        | F    | 245 Old St   | Atlanta   | GA    | 80001 | 45000 | 2003-05-22 |
+| 007      | Sarra Jhones   | PRO       | CLK        | F    | 160 Saint St | Nashville | TN    | 20001 | 48000 | 2001-06-18 |
+| 008      | Maxine         | FIN       | CLK        | F    | 160 Perl St  | Nashville | TN    | 20521 | 48000 | 2002-06-18 |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+
 ///////////////////////////////////
 
 q_4
 ---------------------
 INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, JN_DT)
-VALUES ('004', 'Sophie Matrin', 'CLK', 'F', '246 Maple St', 'Boston', 'MA', '02101', '2014-04-28'),
-       ('005', 'Thomas Brown', 'HLP', 'M', '369 Pine St', 'San Francisco', 'CA', '94101', '2016-10-12');
+VALUES ('009', 'Sophie Matrin', 'CLK', 'F', '246 Maple St', 'Boston', 'MA', '02101', '2014-04-28');
+
+INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, JN_DT)
+VALUES ('010', 'Thomas Brown', 'HLP', 'M', '369 Pine St', 'San Francisco', 'CA', '94101', '2016-10-12');
 ///////////////////////////////////
 
 q_5
 ---------------------
 select * from employee where dept_code is NULL;
+MariaDB [assignment_1]> select * from employee where dept_code is NULL;
++----------+---------------+-----------+------------+------+--------------+---------------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME      | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS      | CITY          | STATE | PIN   | BASIC | JN_DT      |
++----------+---------------+-----------+------------+------+--------------+---------------+-------+-------+-------+------------+
+| 009      | Sophie Matrin | NULL      | CLK        | F    | 246 Maple St | Boston        | MA    | 02101 |  NULL | 2014-04-28 |
+| 010      | Thomas Brown  | NULL      | HLP        | M    | 369 Pine St  | San Francisco | CA    | 94101 |  NULL | 2016-10-12 |
++----------+---------------+-----------+------------+------+--------------+---------------+-------+-------+-------+------------+
 ////////////////////////////////////
 
 q_6
 ---------------------
 select * from employee where basic = 0;
+MariaDB [assignment_1]> select * from employee where basic = 0;
++----------+---------------+-----------+------------+------+------------+--------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME      | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS    | CITY   | STATE | PIN   | BASIC | JN_DT      |
++----------+---------------+-----------+------------+------+------------+--------+-------+-------+-------+------------+
+| 002      | Maddie Morris | PRO       | EXE        | F    | 456 Elm St | Denver | CO    | 80001 |     0 | 0000-00-00 |
++----------+---------------+-----------+------------+------+------------+--------+-------+-------+-------+------------+
 ////////////////////////////////////
 
 q_7
 ---------------------
 select * from employee where basic is NULL;
+MariaDB [assignment_1]> select * from employee where basic is NULL;
++----------+---------------+-----------+------------+------+--------------+---------------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME      | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS      | CITY          | STATE | PIN   | BASIC | JN_DT      |
++----------+---------------+-----------+------------+------+--------------+---------------+-------+-------+-------+------------+
+| 009      | Sophie Matrin | NULL      | CLK        | F    | 246 Maple St | Boston        | MA    | 02101 |  NULL | 2014-04-28 |
+| 010      | Thomas Brown  | NULL      | HLP        | M    | 369 Pine St  | San Francisco | CA    | 94101 |  NULL | 2016-10-12 |
++----------+---------------+-----------+------------+------+--------------+---------------+-------+-------+-------+------------+
 ////////////////////////////////////
 
 q_8
 ---------------------
-select avg(basic) as 'Avg_Basic' from employee;	//40k
+select avg(basic) as 'Avg_Basic' from employee;
+MariaDB [assignment_1]> select avg(basic) as 'Avg_Basic' from employee;
++------------+
+| Avg_Basic  |
++------------+
+| 37876.2500 |
++------------+
 ////////////////////////////////////
 
 q_9
 ---------------------
 update employee set basic = 0 where basic is NULL;
+MariaDB [assignment_1]> update employee set basic = 0 where basic is NULL;
+Query OK, 2 rows affected (0.004 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
 ////////////////////////////////////
 
 q_10
 ---------------------
-select avg(basic) as 'Avg_Basic' from employee; //24k
+select avg(basic) as 'Avg_Basic' from employee;
+MariaDB [assignment_1]> select avg(basic) as 'Avg_Basic' from employee;
++------------+
+| Avg_Basic  |
++------------+
+| 30301.0000 |
++------------+
 ////////////////////////////////////
 
 q_11
 ---------------------
 delete from employee where dept_code is NULL;
+MariaDB [assignment_1]> delete from employee where dept_code is NULL;
+Query OK, 2 rows affected (0.008 sec)
 ////////////////////////////////////
 
 q_12
 ----------------------
 select emp_name, basic + (basic * 0.4) + (basic * 0.5) as "Net_Pay" from employee;
+MariaDB [assignment_1]> select emp_name, basic + (basic * 0.4) + (basic * 0.5) as "Net_Pay" from employee;
++----------------+---------+
+| emp_name       | Net_Pay |
++----------------+---------+
+| Adam Smith     | 95000.0 |
+| Maddie Morris  |     0.0 |
+| Edward Johnson | 76000.0 |
+| Jenifer Martin | 70319.0 |
+| Sam Joe        | 66500.0 |
+| Jessica Altman | 85500.0 |
+| Sarra Jhones   | 91200.0 |
+| Maxine         | 91200.0 |
++----------------+---------+
 ////////////////////////////////////
 
 q_13
 ----------------------
 select upper(emp_name), basic from employee order by dept_code;
+MariaDB [assignment_1]> select upper(emp_name), basic from employee order by dept_code;
++-----------------+-------+
+| upper(emp_name) | basic |
++-----------------+-------+
+| SAM JOE         | 35000 |
+| Maxine          | 48000 |
+| JENIFER MARTIN  | 37010 |
+| MADDIE MORRIS   |     0 |
+| SARRA JHONES    | 48000 |
+| ADAM SMITH      | 50000 |
+| EDWARD JOHNSON  | 40000 |
+| JESSICA ALTMAN  | 45000 |
++-----------------+-------+
 ////////////////////////////////////
 
 q_14
 ----------------------
 select * from employee where jn_dt > '2010-01-01';
+MariaDB [assignment_1]> select * from employee where jn_dt > '2010-01-01';
++----------+----------------+-----------+------------+------+------------+---------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME       | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS    | CITY    | STATE | PIN   | BASIC | JN_DT      |
++----------+----------------+-----------+------------+------+------------+---------+-------+-------+-------+------------+
+| 003      | Edward Johnson | PUR       | OFF        | M    | 789 Oak St | Atlanta | GA    | 30002 | 40000 | 2010-06-25 |
++----------+----------------+-----------+------------+------+------------+---------+-------+-------+-------+------------+
 ////////////////////////////////////
 
 q_15
 ----------------------
 select count(emp_code) as 'Joiners on January'  from employee where month(jn_dt) = '01';
+MariaDB [assignment_1]> select count(emp_code) as 'Joiners on January'  from employee where month(jn_dt) = '01';
++--------------------+
+| Joiners on January |
++--------------------+
+|                  2 |
++--------------------+
 ////////////////////////////////////
 
 q_16
 ----------------------
 select max(basic) as 'Max_Basic', min(basic) as 'Min_Basic' from employee;
+MariaDB [assignment_1]> select max(basic) as 'Max_Basic', min(basic) as 'Min_Basic' from employee;
++-----------+-----------+
+| Max_Basic | Min_Basic |
++-----------+-----------+
+|     50000 |         0 |
++-----------+-----------+
 /////////////////////////////////////
 
 q_17
 ----------------------
 select * from employee where sex = 'F';
+MariaDB [assignment_1]> select * from employee where sex = 'F';
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME       | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS      | CITY      | STATE | PIN   | BASIC | JN_DT      |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| 002      | Maddie Morris  | PRO       | EXE        | F    | 456 Elm St   | Denver    | CO    | 80001 |     0 | 0000-00-00 |
+| 004      | Jenifer Martin | MGR       | OFF        | F    | 245 Perl St  | Nashville | TN    | 80001 | 37010 | 2008-01-24 |
+| 006      | Jessica Altman | PUR       | HLP        | F    | 245 Old St   | Atlanta   | GA    | 80001 | 45000 | 2003-05-22 |
+| 007      | Sarra Jhones   | PRO       | CLK        | F    | 160 Saint St | Nashville | TN    | 20001 | 48000 | 2001-06-18 |
+| 008      | Maxine         | FIN       | CLK        | F    | 160 Perl St  | Nashville | TN    | 20521 | 48000 | 2002-06-18 |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
 /////////////////////////////////////////
 
 q_18
 -----------------------
 update employee set city = upper(city);
+MariaDB [assignment_1]> update employee set city = upper(city);
+Query OK, 8 rows affected (0.003 sec)
+Rows matched: 8  Changed: 8  Warnings: 0
+
+MariaDB [assignment_1]> select * from employee;
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME       | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS      | CITY      | STATE | PIN   | BASIC | JN_DT      |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| 001      | Adam Smith     | PUR       | MGR        | M    | 123 Main St  | BERKELEY  | CA    | 90001 | 50000 | 2002-01-01 |
+| 002      | Maddie Morris  | PRO       | EXE        | F    | 456 Elm St   | DENVER    | CO    | 80001 |     0 | 0000-00-00 |
+| 003      | Edward Johnson | PUR       | OFF        | M    | 789 Oak St   | ATLANTA   | GA    | 30002 | 40000 | 2010-06-25 |
+| 004      | Jenifer Martin | MGR       | OFF        | F    | 245 Perl St  | NASHVILLE | TN    | 80001 | 37010 | 2008-01-24 |
+| 005      | Sam Joe        | FIN       | CLK        | M    | 245 New St   | DENVER    | CO    | 80001 | 35000 | 2002-02-24 |
+| 006      | Jessica Altman | PUR       | HLP        | F    | 245 Old St   | ATLANTA   | GA    | 80001 | 45000 | 2003-05-22 |
+| 007      | Sarra Jhones   | PRO       | CLK        | F    | 160 Saint St | NASHVILLE | TN    | 20001 | 48000 | 2001-06-18 |
+| 008      | Maxine         | FIN       | CLK        | F    | 160 Perl St  | NASHVILLE | TN    | 20521 | 48000 | 2002-06-18 |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
 //////////////////////////////////////////
 
 q_19
 ------------------------
 select count(distinct(city)) as 'Unique cities' from employee;
+MariaDB [assignment_1]> select count(distinct(city)) as 'Unique cities' from employee;
++---------------+
+| Unique cities |
++---------------+
+|             4 |
++---------------+
 //////////////////////////////////////////
 
 q_20
 ------------------------
 select * from employee order by dept_code, basic desc;
+MariaDB [assignment_1]> select * from employee order by dept_code, basic desc;
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME       | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS      | CITY      | STATE | PIN   | BASIC | JN_DT      |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| 008      | Maxine         | FIN       | CLK        | F    | 160 Perl St  | NASHVILLE | TN    | 20521 | 48000 | 2002-06-18 |
+| 005      | Sam Joe        | FIN       | CLK        | M    | 245 New St   | DENVER    | CO    | 80001 | 35000 | 2002-02-24 |
+| 004      | Jenifer Martin | MGR       | OFF        | F    | 245 Perl St  | NASHVILLE | TN    | 80001 | 37010 | 2008-01-24 |
+| 007      | Sarra Jhones   | PRO       | CLK        | F    | 160 Saint St | NASHVILLE | TN    | 20001 | 48000 | 2001-06-18 |
+| 002      | Maddie Morris  | PRO       | EXE        | F    | 456 Elm St   | DENVER    | CO    | 80001 |     0 | 0000-00-00 |
+| 001      | Adam Smith     | PUR       | MGR        | M    | 123 Main St  | BERKELEY  | CA    | 90001 | 50000 | 2002-01-01 |
+| 006      | Jessica Altman | PUR       | HLP        | F    | 245 Old St   | ATLANTA   | GA    | 80001 | 45000 | 2003-05-22 |
+| 003      | Edward Johnson | PUR       | OFF        | M    | 789 Oak St   | ATLANTA   | GA    | 30002 | 40000 | 2010-06-25 |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
 ///////////////////////////////////////////
 
 

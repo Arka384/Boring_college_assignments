@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class set_2_q_7 {
+public class q_7 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a string: ");

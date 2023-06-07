@@ -1,36 +1,188 @@
 q_1
 -----------------------------
 select dept_code, max(basic), min(basic), avg(basic) from employee group by dept_code;
+MariaDB [assignment_1]> select dept_code, max(basic), min(basic), avg(basic) from employee group by dept_code;
++-----------+------------+------------+------------+
+| dept_code | max(basic) | min(basic) | avg(basic) |
++-----------+------------+------------+------------+
+| FIN       |      48000 |      35000 | 41500.0000 |
+| MGR       |      37010 |      37010 | 37010.0000 |
+| PRO       |      48000 |      32500 | 40250.0000 |
+| PUR       |      50000 |      40000 | 45000.0000 |
++-----------+------------+------------+------------+
 ////////////////////////////////////////////////////
 
 q_2
 ------------------------------
 select dept_code, count(emp_code) as 'Count of Female' from employee where sex = 'F' group by dept_code;
+MariaDB [assignment_1]> select dept_code, count(emp_code) as 'Count of Female' from employee where sex = 'F' group by dept_code;
++-----------+-----------------+
+| dept_code | Count of Female |
++-----------+-----------------+
+| FIN       |               1 |
+| MGR       |               1 |
+| PRO       |               2 |
+| PUR       |               1 |
++-----------+-----------------+
 ///////////////////////////////////////////////////
 
 q_3
 -------------------------------
 select distinct(dept_code), city, count(*) from employee group by city;
+MariaDB [assignment_1]> select distinct(dept_code), city, count(*) from employee group by city;
++-----------+-----------+----------+
+| dept_code | city      | count(*) |
++-----------+-----------+----------+
+| PUR       | ATLANTA   |        2 |
+| PUR       | BERKELEY  |        1 |
+| PRO       | DENVER    |        2 |
+| MGR       | NASHVILLE |        3 |
++-----------+-----------+----------+
 ////////////////////////////////////////////////////
 
 q_4
 -------------------------------
 select desig_code, dept_code, count(emp_code) from employee where year(jn_dt) = '2002' group by desig_code;
+MariaDB [assignment_1]> select desig_code, dept_code, count(emp_code) from employee where year(jn_dt) = '2002' group by desig_code;
++------------+-----------+-----------------+
+| desig_code | dept_code | count(emp_code) |
++------------+-----------+-----------------+
+| CLK        | FIN       |               2 |
+| MGR        | PUR       |               1 |
++------------+-----------+-----------------+
 ////////////////////////////////////////////////////
 
 q_5
 --------------------------------
 select dept_code, sum(basic) from employee where sex = 'M' group by dept_code having sum(basic) > 50000;
+MariaDB [assignment_1]> select dept_code, sum(basic) from employee where sex = 'M' group by dept_code having sum(basic) > 50000;
++-----------+------------+
+| dept_code | sum(basic) |
++-----------+------------+
+| PUR       |      90000 |
++-----------+------------+
 ////////////////////////////////////////////////////
 
 q_6
 --------------------------------
 select e.emp_name, d.desig_desc from employee e, designation d
 where e.desig_code = d.desig_code;
-////////////////////////////////////////////////////
+MariaDB [assignment_1]> select e.emp_name, d.desig_desc from employee e, designation d
+    -> where e.desig_code = d.desig_code;
++----------------+------------+
+| emp_name       | desig_desc |
++----------------+------------+
+| Adam Smith     | Manager    |
+| Maddie Morris  | Executive  |
+| Edward Johnson | Officer    |
+| Jenifer Martin | Officer    |
+| Sam Joe        | Clerk      |
+| Jessica Altman | Helper     |
+| Sarra Jhones   | Clerk      |
+| Maxine         | Clerk      |
++----------------+------------+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+q_7
+----------------------------
+select e.emp_name, d.desig_code, dp.dept_name, e.basic 
+from employee e, designation d, department dp
+where e.desig_code = d.desig_code and e.dept_code = dp.dept_code;
+
+MariaDB [assignment_1]> select e.emp_name, d.desig_code, dp.dept_name, e.basic
+    -> from employee e, designation d, department dp
+    -> where e.desig_code = d.desig_code and e.dept_code = dp.dept_code;
++----------------+------------+------------+-------+
+| emp_name       | desig_code | dept_name  | basic |
++----------------+------------+------------+-------+
+| Sam Joe        | CLK        | Finance    | 35000 |
+| Maxine         | CLK        | Finance    | 48000 |
+| Maddie Morris  | EXE        | Production | 32500 |
+| Sarra Jhones   | CLK        | Production | 48000 |
+| Adam Smith     | MGR        | Purchase   | 50000 |
+| Edward Johnson | OFF        | Purchase   | 40000 |
+| Jessica Altman | HLP        | Purchase   | 45000 |
++----------------+------------+------------+-------+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+q_8
+-------------------------------
+select dept_code from department where dept_code
+not in (select dept_code from employee);
+
+MariaDB [assignment_1]> select dept_code from department where dept_code
+    -> not in (select dept_code from employee);
++-----------+
+| dept_code |
++-----------+
+| PER       |
+| RES       |
++-----------+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+q_9
+-------------------------
+select dept_name from department
+where dept_code in 
+(select dept_code from employee);
+
+MariaDB [assignment_1]> select dept_name from department
+    -> where dept_code in
+    -> (select dept_code from employee);
++------------+
+| dept_name  |
++------------+
+| Finance    |
+| Production |
+| Purchase   |
++------------+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+q_10
+-----------------------------
+select d.dept_name from department d
+where (select count(*) from employee e where e.dept_code = d.dept_code) > 9;
+
+MariaDB [assignment_1]> select d.dept_name from department d
+    -> where (select count(*) from employee e where e.dept_code = d.dept_code) > 9;
+Empty set
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+q_11
+--------------------------------
+select dept_code, basic as MAX_BASIC from employee
+where basic = (select max(basic) from employee);
+
+MariaDB [assignment_1]> select dept_code, basic as MAX_BASIC from employee
+    -> where basic = (select max(basic) from employee);
++-----------+-----------+
+| dept_code | MAX_BASIC |
++-----------+-----------+
+| PUR       |     50000 |
++-----------+-----------+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+q_12
+--------------------------
+select d.desig_desc, e.basic as MAX_BASIC
+from employee e, designation d
+where e.desig_code = d.desig_code and 
+e.basic = (select max(basic) from employee);
+
+MariaDB [assignment_1]> select d.desig_desc, e.basic as MAX_BASIC
+    -> from employee e, designation d
+    -> where e.desig_code = d.desig_code and
+    -> e.basic = (select max(basic) from employee);
++------------+-----------+
+| desig_desc | MAX_BASIC |
++------------+-----------+
+| Manager    |     50000 |
++------------+-----------+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 q_13
 ---------------------------------
@@ -40,18 +192,49 @@ e.dept_code = d.dept_code
 and e.desig_code in 
 (select desig_code from designation
 where desig_desc = 'Manager');
+
+MariaDB [assignment_1]> select d.dept_name, count(*) as NO_OF_MANAGER
+    -> from employee e, department d where
+    -> e.dept_code = d.dept_code
+    -> and e.desig_code in
+    -> (select desig_code from designation
+    -> where desig_desc = 'Manager');
++-----------+---------------+
+| dept_name | NO_OF_MANAGER |
++-----------+---------------+
+| Purchase  |             1 |
++-----------+---------------+
+
 ////////////////////////////////////////////////////
 
 q_14
 ---------------------------------
 select distinct basic as Max_Basic from employee e
 where e.basic >= all(select basic from employee);
+
+MariaDB [assignment_1]> select distinct basic as Max_Basic from employee e
+    -> where e.basic >= all(select basic from employee);
++-----------+
+| Max_Basic |
++-----------+
+|     50000 |
++-----------+
+
 ////////////////////////////////////////////////////
 
 q_15
 ---------------------------------
 select distinct basic as Min_Basic from employee e
 where e.basic <= all(select basic from employee);
+
+MariaDB [assignment_1]> select distinct basic as Min_Basic from employee e
+    -> where e.basic <= all(select basic from employee);
++-----------+
+| Min_Basic |
++-----------+
+|     32500 |
++-----------+
+
 ////////////////////////////////////////////////////
 
 q_16
@@ -59,8 +242,17 @@ q_16
 select d.dept_name, e.basic from employee e, department d
 where e.dept_code = d.dept_code
 and e.basic >= all(select basic from employee);
-////////////////////////////////////////////////////
 
+MariaDB [assignment_1]> select d.dept_name, e.basic from employee e, department d
+    -> where e.dept_code = d.dept_code
+    -> and e.basic >= all(select basic from employee);
++-----------+-------+
+| dept_name | basic |
++-----------+-------+
+| Purchase  | 50000 |
++-----------+-------+
+
+-------------------------------------------------
 select dept_name, basic as AVERAGE_BASIC from (
 	select dept_name, avg(basic) as Basic from employee e, department d
 	where e.dept_code = d.dept_code group by dept_name)
@@ -69,29 +261,59 @@ where basic = (select max(basic) from (
 	where e.dept_code = d.dept_code group by dept_name)
 );
 
-//
-SELECT DEPT_NAME, BASIC AS AVERAGE_BASIC FROM
-(SELECT DEPT_NAME , AVG(BASIC) AS BASIC FROM EMPLOYEE e, DEPARTMENT d
-WHERE e.DEPT_CODE = d.DEPT_CODE GROUP BY DEPT_NAME)
-WHERE BASIC = (SELECT MAX(BASIC) FROM
-(SELECT DEPT_NAME, AVG(BASIC) AS BASIC FROM EMPLOYEE e,
-DEPARTMENT d WHERE
-e.DEPT_CODE = d.DEPT_CODE GROUP BY DEPT_NAME));
++-----------+-----------+
+| dept_name | avg_basic |
++-----------+-----------+
+| Purchase  | 45000     |
++-----------+-----------+
+
+----------------------------------------
+select dept_name, count(emp_code) as Count_of_Employee from employee, department
+where employee.dept_code = department.dept_code
+group by employee.dept_code order by count(emp_code) desc limit 1;
+
+MariaDB [assignment_1]> select dept_name, count(emp_code) as Count_of_Employee from employee, department
+    -> where employee.dept_code = department.dept_code
+    -> group by employee.dept_code order by count(emp_code) desc limit 1;
++-----------+-------------------+
+| dept_name | Count_of_Employee |
++-----------+-------------------+
+| Purchase  |                 3 |
++-----------+-------------------+
+
 //////////////////////////////////////////////////////////
 
 q_17
 --------------------------------
 INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
-VALUES ('008', 'Adam Smith', 'PUR', 'Manager', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+VALUES ('009', 'Adam Smith', 'PUR', 'Manager', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
 
 INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
-VALUES ('009', 'Adam Smith', 'PUR', 'Worker', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+VALUES ('010', 'Adam Smith', 'PUR', 'Worker', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
 
 INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
-VALUES ('010', 'Adam Smith', 'PUR', 'Client', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+VALUES ('011', 'Adam Smith', 'PUR', 'Client', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
 
 INSERT INTO EMPLOYEE (EMP_CODE, EMP_NAME, DEPT_CODE, DESIG_CODE, SEX, ADDRESS, CITY, STATE, PIN, BASIC, JN_DT)
-VALUES ('011', 'Adam Smith', 'PUR', 'Executive', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+VALUES ('012', 'Adam Smith', 'PUR', 'Executive', 'M', '123 Main St', 'Berkeley', 'CA', '90001', 50000, '2002-01-01');
+
+MariaDB [assignment_1]> select * from employee;
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME       | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS      | CITY      | STATE | PIN   | BASIC | JN_DT      |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| 001      | Adam Smith     | PUR       | MGR        | M    | 123 Main St  | BERKELEY  | CA    | 90001 | 50000 | 2002-01-01 |
+| 002      | Maddie Morris  | PRO       | EXE        | F    | 456 Elm St   | DENVER    | CO    | 80001 | 32500 | 0000-00-00 |
+| 003      | Edward Johnson | PUR       | OFF        | M    | 789 Oak St   | ATLANTA   | GA    | 30002 | 40000 | 2010-06-25 |
+| 004      | Jenifer Martin | MGR       | OFF        | F    | 245 Perl St  | NASHVILLE | TN    | 80001 | 37010 | 2008-01-24 |
+| 005      | Sam Joe        | FIN       | CLK        | M    | 245 New St   | DENVER    | CO    | 80001 | 35000 | 2002-02-24 |
+| 006      | Jessica Altman | PUR       | HLP        | F    | 245 Old St   | ATLANTA   | GA    | 80001 | 45000 | 2003-05-22 |
+| 007      | Sarra Jhones   | PRO       | CLK        | F    | 160 Saint St | NASHVILLE | TN    | 20001 | 48000 | 2001-06-18 |
+| 008      | Maxine         | FIN       | CLK        | F    | 160 Perl St  | NASHVILLE | TN    | 20521 | 48000 | 2002-06-18 |
+| 009      | Adam Smith     | PUR       | Manager    | M    | 123 Main St  | Berkeley  | CA    | 90001 | 50000 | 2002-01-01 |
+| 010      | Adam Smith     | PUR       | Worker     | M    | 123 Main St  | Berkeley  | CA    | 90001 | 50000 | 2002-01-01 |
+| 011      | Adam Smith     | PUR       | Client     | M    | 123 Main St  | Berkeley  | CA    | 90001 | 50000 | 2002-01-01 |
+| 012      | Adam Smith     | PUR       | Executive  | M    | 123 Main St  | Berkeley  | CA    | 90001 | 50000 | 2002-01-01 |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
 
 
 /////////////////////////////////////////////
@@ -100,6 +322,25 @@ q_18
 -------------------------
 delete from employee where desig_code not in 
 (select desig_code from designation);
+
+MariaDB [assignment_1]> delete from employee where desig_code not in
+    -> (select desig_code from designation);
+Query OK, 4 rows affected (0.005 sec)
+
+MariaDB [assignment_1]> select * from employee;
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| EMP_CODE | EMP_NAME       | DEPT_CODE | DESIG_CODE | SEX  | ADDRESS      | CITY      | STATE | PIN   | BASIC | JN_DT      |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+| 001      | Adam Smith     | PUR       | MGR        | M    | 123 Main St  | BERKELEY  | CA    | 90001 | 50000 | 2002-01-01 |
+| 002      | Maddie Morris  | PRO       | EXE        | F    | 456 Elm St   | DENVER    | CO    | 80001 | 32500 | 0000-00-00 |
+| 003      | Edward Johnson | PUR       | OFF        | M    | 789 Oak St   | ATLANTA   | GA    | 30002 | 40000 | 2010-06-25 |
+| 004      | Jenifer Martin | MGR       | OFF        | F    | 245 Perl St  | NASHVILLE | TN    | 80001 | 37010 | 2008-01-24 |
+| 005      | Sam Joe        | FIN       | CLK        | M    | 245 New St   | DENVER    | CO    | 80001 | 35000 | 2002-02-24 |
+| 006      | Jessica Altman | PUR       | HLP        | F    | 245 Old St   | ATLANTA   | GA    | 80001 | 45000 | 2003-05-22 |
+| 007      | Sarra Jhones   | PRO       | CLK        | F    | 160 Saint St | NASHVILLE | TN    | 20001 | 48000 | 2001-06-18 |
+| 008      | Maxine         | FIN       | CLK        | F    | 160 Perl St  | NASHVILLE | TN    | 20521 | 48000 | 2002-06-18 |
++----------+----------------+-----------+------------+------+--------------+-----------+-------+-------+-------+------------+
+
 //////////////////////////////////////////////
 
 q_19
@@ -110,6 +351,21 @@ e.dept_code = d.dept_code and basic > (
 	e.dept_code = d.dept_code and e.sex = 'F'
 )
 and e.sex = 'F';
+
+MariaDB [assignment_1]> select e.emp_name, e.basic from employee e, department d where
+    -> e.dept_code = d.dept_code and basic > (
+    -> select avg(basic) from employee e, department d where
+    -> e.dept_code = d.dept_code and e.sex = 'F'
+    -> )
+    -> and e.sex = 'F';
++----------------+-------+
+| emp_name       | basic |
++----------------+-------+
+| Jessica Altman | 45000 |
+| Sarra Jhones   | 48000 |
+| Maxine         | 48000 |
++----------------+-------+
+
 ////////////////////////////////////////////
 
 q_20
@@ -117,4 +373,13 @@ q_20
 select count(*) as NO_OF_FEMALE_MANAGER from employee e, designation d
 where e.desig_code = d.desig_code and e.sex = 'F'
 and d.desig_code = "MGR";
+
+MariaDB [assignment_1]> select count(*) as NO_OF_FEMALE_MANAGER from employee e, designation d
+    -> where e.desig_code = d.desig_code and e.sex = 'F'
+    -> and d.desig_code = "MGR";
++----------------------+
+| NO_OF_FEMALE_MANAGER |
++----------------------+
+|                    1 |
++----------------------+
 ///////////////////////////////////////////

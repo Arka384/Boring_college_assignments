@@ -1,4 +1,4 @@
-package q_3.MemberList;
+package q_4.MemberList;
 
 public class Member {
     String mem_id;

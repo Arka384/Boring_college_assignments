@@ -1,4 +1,4 @@
-package q_3.BookList;
+package q_4.BookList;
 
 public class Book {
     String book_id;
@@ -18,7 +18,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [ book_id = " + book_id + ", title = " + title + ", copies_purchased = " + copies_purchased
+        return "Book [book_id = " + book_id + ", title = " + title + ", copies_purchased = " + copies_purchased
                 + ", copies_available = " + copies_available + " ]";
     }
     

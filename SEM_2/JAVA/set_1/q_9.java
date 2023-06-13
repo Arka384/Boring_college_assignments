@@ -1,7 +1,16 @@
+import java.util.Scanner;
 
 public class q_9 {
     public static void main(String[] args) {
-        BankAccount a = new BankAccount(123456, 100, 4.f);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter account number: ");
+        int accountNumber = sc.nextInt();
+        System.out.println("Enter balance: ");
+        float balance = sc.nextFloat();
+        System.out.println(("Enter interest rate: "));
+        float interestRate = sc.nextFloat();
+        sc.close();
+        BankAccount a = new BankAccount(accountNumber, balance, interestRate);
 
         System.out.println(a);
         a.calculate();
@@ -21,6 +30,9 @@ class BankAccount {
         this.interset = interset;
     }
 
+    public float getBalance() {
+        return balance;
+    }
     void calculate() {
         float temp = balance * this.interset/100;
         this.balance = balance + temp;

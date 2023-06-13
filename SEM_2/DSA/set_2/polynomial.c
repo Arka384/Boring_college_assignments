@@ -31,8 +31,8 @@ int main()
 
     while(1) {
         printf("1 -> add polynomial_1 with polynomial_2\n");
-        printf("2 -> add polynomial_1 with polynomial_2\n");
-        printf("3 -> add polynomial_1 with polynomial_2\n");
+        printf("2 -> subtract polynomial_1 with polynomial_2\n");
+        printf("3 -> multiply polynomial_1 with polynomial_2\n");
         printf("4 -> Exit\n");
         scanf("%d", &choice);
         switch(choice) {

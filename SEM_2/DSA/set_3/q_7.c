@@ -21,10 +21,13 @@ int getNextData(char* ,int* );
 int main() {
     // char postfix[20] = {"2 3 1 * + 9 -"};
     // char postfix[30] = {"10 22 + 8 / 6 * 5 +"};
-    char postfix[30] = {"100 2 * 40 + 26 * 2 / - 22 +"};
+    // char postfix[30] = {"100 2 * 40 + 26 * 2 / - 22 +"};
     // char postfix[30] = {"5 9 3 / 2 1 + * + 6 2 / - 3 +"};
     // char postfix[30] = {"4 3 2 ^ + 1 8 * 2 2 + / - 2 -"};
     // char postfix[35] = {"2 3 ^ 1 - 4 2 / 6 * + 3 1 + 2 / -"};
+    char postfix[50] = {" "};
+    printf("\nEnter postfix expression\n: ");
+    fgets(postfix, 50, stdin);
 
     int i = 0;
     
@@ -62,7 +65,7 @@ int main() {
         }
     }
 
-    printf("\nLast = %d\n", stackTop->data);
+    printf("\nEvaluated Value = %d\n", stackTop->data);
 
 }
 

@@ -9,6 +9,8 @@ dict["Sunday"] = ("cp_snd893", "8%")
 
 while True:
     day=input("Find coupon for day: ")
+    if(day == "exit"):
+        break
     print(dict.get(day, "Invalid day"))
 
 

@@ -48,12 +48,14 @@ int main()
 
 	while(1)
 	{
-		// printf("2 -> display \n3 -> ins front \n4 -> ins end ");
-		// printf("\n5 -> ins after k'th \n6 -> ins after node");
-		// printf("\n7 -> ins before k'th \n8 -> ins before node");
-		// printf("\n9 -> del first \n10 -> del last");
-		// printf("\n11 -> del after k'th \n12 -> del before k'th");
-		// printf("\n13 -> del k'th \n14 -> del value \n15 -> reverse");
+		printf("\n================================================");
+		printf("\n2 -> display \n3 -> ins front \n4 -> ins end ");
+		printf("\n5 -> ins after k'th \n6 -> ins after node");
+		printf("\n7 -> ins before k'th \n8 -> ins before node");
+		printf("\n9 -> del first \n10 -> del last");
+		printf("\n11 -> del after k'th \n12 -> del before k'th");
+		printf("\n13 -> del k'th \n14 -> del value \n15 -> reverse");
+		printf("\n===========================================================");
 		printf("\nEnter choice: ");
 		scanf("%d",&s);
 		switch(s)

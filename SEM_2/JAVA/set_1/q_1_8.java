@@ -1,10 +1,30 @@
+import java.util.Scanner;
 
-public class q_8 {
+public class q_1_8 {
     public static void main(String[] args) {
         Student s = new Student();
-        Student s1 = new Student(50);
-        Student s2 = new Student(10, "Arka");
-        Student s3 = new Student(20, "Ram", 70);
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter sutdent roll: ");
+        int roll = sc.nextInt();
+        Student s1 = new Student(roll);
+        
+        System.out.println("Enter sutdent roll: ");
+        roll = sc.nextInt();
+        System.out.println("Enter name: ");
+        String name = sc.next();
+        Student s2 = new Student(roll, name);
+
+        sc.next();
+        System.out.println("Enter sutdent roll: ");
+        roll = sc.nextInt();
+        System.out.println("Enter name: ");
+        name = sc.next();
+        sc.next();
+        System.out.println("Enter marks: ");
+        int marks = sc.nextInt();
+        sc.close();
+        Student s3 = new Student(roll, name, marks);
 
         Student s4 = new Student(s3);
 

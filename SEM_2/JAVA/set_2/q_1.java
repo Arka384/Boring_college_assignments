@@ -11,8 +11,8 @@ public class q_1 {
             System.out.println("Enter ID: ");
             int id = sc.nextInt();
             System.out.println("Enter holders Name: ");
-            //sc.next();
             String name = sc.next();
+            sc.next();
             System.out.println("Enter holders phone number: ");
             long phone = sc.nextLong();
             System.out.println("If priviledged customer then enter 1 else 0: ");

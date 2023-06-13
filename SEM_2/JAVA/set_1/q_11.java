@@ -1,9 +1,6 @@
 
-// import java.util.Scanner;
-
 public class q_11 {
     public static void main(String[] args) {
-        //Scanner sc = new Scanner(System.in);
         Instructor ins1 = new Instructor("Ins_1", 1234);
         Instructor ins2 = new Instructor("Ins_2", 5678);
 

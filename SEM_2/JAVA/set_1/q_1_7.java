@@ -1,11 +1,22 @@
+import java.util.Scanner;
 
-public class q_7 {
+public class q_1_7 {
     public static void main(String[] args) {
         Student s = new Student();
 
-        s.setRoll(10);
-        s.setName("Arka");
-        s.setScore(56.f);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter sutdent roll: ");
+        int roll = sc.nextInt();
+        System.out.println("Enter name: ");
+        String name = sc.next();
+        sc.next();
+        System.out.println("Enter marks: ");
+        float marks = sc.nextFloat();
+        sc.close();
+
+        s.setRoll(roll);
+        s.setName(name);
+        s.setScore(marks);
 
         Student t = s;
         t.setRoll(50);

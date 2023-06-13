@@ -17,7 +17,8 @@ public class q_3 {
         int choice = 0;
 
         do {
-            System.out.println("\n\n1.Add new book in the list");
+            System.out.println("\n==============================================");
+            System.out.println("1.Add new book in the list");
             System.out.println("2.Add more copies for a book");
             System.out.println("3.Show all book details");
             System.out.println("4.Show a particular book detail");
@@ -28,6 +29,7 @@ public class q_3 {
             System.out.println("9.Return a book");
             System.out.println("10.Display All Transaction Details");
             System.out.println("11.Exit");
+            System.out.println("==============================================");
             System.out.println("Enter your choice:");
             choice = sc.nextInt();
             sc.nextLine();

@@ -197,6 +197,10 @@ void display(node *head)
 		printf("\nThe polynomial list is-> ");
 		while(t != NULL)
 		{
+            if(t->coeff == 0) {
+                t = t->next;
+                continue;
+            }
 			printf("%dx^%d",t->coeff, t->exp);
 			t = t->next;
             if(t != NULL)
@@ -216,10 +220,10 @@ node* create(node *head)
         printf("\nEnter coefficient for term with degree %d: ", highestDeg);
         node* t = getnode();
         scanf("%d", &x);
-        if(x == 0) {
-            highestDeg--;
-            continue;
-        }
+        // if(x == 0) {
+        //     highestDeg--;
+        //     continue;
+        // }
         t->coeff = x;
         t->exp = highestDeg;
         if(head == NULL)

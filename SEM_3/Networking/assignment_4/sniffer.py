@@ -7,6 +7,7 @@ srcDstPortPairs = []
 filtered = {}   # src, dst -> list of packets from src to dst
 filteredOnPort = {} # (src,dst) : [sPort, dPort] -> list of packets
 
+unwantedIP = ["0.0.0.0"]
 
 # method to get all unique host IP
 def findDistinctHostIP(packets):
@@ -15,6 +16,8 @@ def findDistinctHostIP(packets):
             if not scapy.IP in packet:
                 continue
             src = packet[scapy.IP].src
+            if src in unwantedIP:
+                continue
             if src not in sourceIPs:
                 sourceIPs.append(src)
         except Exception as e:
@@ -36,6 +39,8 @@ def classifyPacketsWithIP(packets):
             continue
         src = packet[scapy.IP].src
         dst = packet[scapy.IP].dst
+        if src in unwantedIP or dst in unwantedIP:
+            continue
         currentPair = [src, dst]
         temp = str(currentPair)
         if temp not in filtered: # new (srcIP, dstIP) pair found
@@ -68,6 +73,8 @@ def classifyPacketsWithPort(packets):
             continue
         src = packet[scapy.IP].src
         dst = packet[scapy.IP].dst
+        if src in unwantedIP or dst in unwantedIP:
+            continue
         ips = str([src, dst])
         sPort = 0
         dPort = 0
@@ -167,7 +174,7 @@ def getSrcDstIpPortInfo():
         
     
 def main():
-    packetsToCapture = 100
+    packetsToCapture = 10
     packets = scapy.sniff(count = packetsToCapture)
     print(packets)  # gives an overview of packets captured
     print("===================================================")

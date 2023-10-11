@@ -1,0 +1,30 @@
+PS C:\Users\Arka\Documents\DEADSHOT FILES\MCA_JU\SEM_3\Networking\assignment_5> py icmp_sender.py
+Enter network address in CIDR notation (ex:192.168.0.0/24): 192.168.0.0/24
+Number of possible host IP:  256
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: more Mac address to reach destination not found. Using broadcast.
+Host:  192.168.0.1  responsive
+Host:  192.168.0.105  responsive
+Host:  192.168.0.106  responsive
+Host:  192.168.0.108  responsive
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: more Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: more Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: more Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: more Mac address to reach destination not found. Using broadcast.
+Host:  192.168.0.101  responsive
+Host:  192.168.0.102  responsive
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: more Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: Mac address to reach destination not found. Using broadcast.
+WARNING: more Mac address to reach destination not found. Using broadcast.

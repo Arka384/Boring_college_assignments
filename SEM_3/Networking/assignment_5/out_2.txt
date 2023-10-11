@@ -1,0 +1,6 @@
+PS C:\Users\Arka\Documents\DEADSHOT FILES\MCA_JU\SEM_3\Networking\assignment_5> py port_check.py        
+Enter host IP: 192.168.100.101
+<Port: 135 > (SYN + ACK) recieved
+<Port: 139 > (SYN + ACK) recieved
+<Port: 80 > (SYN + ACK) recieved
+<Port: 445 > (SYN + ACK) recieved

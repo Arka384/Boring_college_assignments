@@ -1,0 +1,58 @@
+Enter the size of the project in KLOC: 60
+Enter number of Cost Drivers : 16
+Enter Cost Drivers
+As Stage value (space separated):
+3 1.15 4 1.3 3 1.1 4 1.6 4 1.4 1 0.85 1 0.7 3 1.21 3 0.86 3 0.9 2 1 2 1 1 0.8 2 1 4 0.83 0 0.85
+
+The type of project is simple.
+Enter the number of screens, reports, components, reusability, productivity:
+14 6 10 90 25
+
+Object Points: 68.00
+New Object Points: 6.80        
+Effort (in person-months): 0.27
+Total Cost required: 408       
+
+Early Stage Design Model       
+Effort : 69.512589
+People Needed : 2.000000       
+
+Post Architecture Stage Model  
+1. Organic
+2. Semi-Detached
+3. Embedded
+3
+Effort : 376.860931
+People Needed : 7.000000
+
+
+
+/////////////////////////////
+
+
+Enter the size of the project in KLOC: 40
+Enter number of Cost Drivers : 16
+Enter Cost Drivers
+As Stage value (space separated):
+3 1.15 4 1.3 3 1.1 4 1.6 4 1.4 1 0.85 1 0.7 3 1.21 3 0.86 3 0.9 2 1 2 1 1 0.8 2 1 4 0.83 0 0.85
+
+The type of project is simple.
+Enter the number of screens, reports, components, reusability, productivity:
+14 6 10 90 25
+
+Object Points: 68.00
+New Object Points: 6.80        
+Effort (in person-months): 0.27
+Total Cost required: 408       
+
+Early Stage Design Model       
+Effort : 46.341724
+People Needed : 1.000000       
+
+Post Architecture Stage Model  
+1. Organic
+2. Semi-Detached
+3. Embedded
+1
+Effort : 160.838303
+People Needed : 3.000000

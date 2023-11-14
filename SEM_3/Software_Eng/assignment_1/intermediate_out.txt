@@ -1,0 +1,15 @@
+Enter KLOC: 25
+Enter values of 15 cost dirvers(space separated): 
+1.15 1.08 1.15 1.11 1.06 1.15 1.07 0.86 0.91 0.86 0.90 0.95 0.91 0.91 1.10
+_______For Organic________
+Effort required: 102 person-months
+Time required: 14 months
+Person required: 7
+_______For Semi_Detached________
+Effort required: 120 person-months
+Time required: 13 months
+Person required: 9
+_______For Embedded________
+Effort required: 144 person-months
+Time required: 12 months
+Person required: 12
